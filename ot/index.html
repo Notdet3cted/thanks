@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100b0c">
+<title>Our Forever Begins — Thank You</title>
+
+<style>
+  :root {
+    --bg: #100b0c;
+    --gold: #e7c99a;
+    --white: #fffaf4;
+    --muted: #d4c7c0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: Inter, "Segoe UI", sans-serif;
+    min-height: 100vh;
+  }
+
+  .hero {
+    min-height: 100svh;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px clamp(24px, 8vw, 120px);
+    background:
+      linear-gradient(
+        90deg,
+        rgba(16, 11, 12, .98) 0%,
+        rgba(16, 11, 12, .86) 44%,
+        rgba(16, 11, 12, .32) 100%
+      ),
+      linear-gradient(
+        0deg,
+        #100b0c 0%,
+        transparent 45%,
+        rgba(16, 11, 12, .28) 100%
+      ),
+      url("wedding.jpg") center 40% / cover no-repeat,
+      #241719;
+  }
+
+  /* Ambient cinematic lighting */
+  .hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -30%;
+    background:
+      radial-gradient(
+        ellipse at 75% 35%,
+        rgba(190, 129, 89, .19),
+        transparent 38%
+      ),
+      radial-gradient(
+        ellipse at 15% 85%,
+        rgba(118, 58, 58, .16),
+        transparent 36%
+      );
+    animation: breathe 10s ease-in-out infinite alternate;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+      0deg,
+      var(--bg) 0%,
+      transparent 16%,
+      transparent 86%,
+      rgba(0, 0, 0, .32) 100%
+    );
+    pointer-events: none;
+  }
+
+  .topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px clamp(24px, 8vw, 120px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    animation: fadeDown 1s ease both;
+  }
+
+  .brand {
+    color: #e50914;
+    font-size: 21px;
+    font-weight: 950;
+    letter-spacing: 3px;
+  }
+
+  .top-label {
+    color: rgba(255, 250, 244, .72);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .content {
+    width: min(720px, 100%);
+    position: relative;
+    padding-top: 40px;
+    animation: reveal 1.2s .15s ease both;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 26px;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .title {
+    font-size: clamp(48px, 8.5vw, 106px);
+    line-height: .94;
+    letter-spacing: -5px;
+    font-weight: 900;
+    text-transform: uppercase;
+    max-width: 850px;
+  }
+
+  .title .accent {
+    display: block;
+    color: var(--gold);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -3px;
+    text-transform: none;
+    margin-top: 12px;
+  }
+
+  .metadata {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 28px 0 22px;
+    color: rgba(255, 250, 244, .78);
+    font-size: 12px;
+  }
+
+  .metadata .year {
+    color: #79c98b;
+    font-weight: 800;
+  }
+
+  .metadata .divider {
+    color: #887a74;
+  }
+
+  .description {
+    max-width: 560px;
+    color: #e0d5d0;
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 2;
+    font-weight: 400;
+  }
+
+  .description strong {
+    color: #fffaf4;
+    font-weight: 600;
+  }
+
+  .quote {
+    margin-top: 25px;
+    padding-left: 17px;
+    border-left: 1px solid rgba(231, 201, 154, .65);
+    color: var(--gold);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    line-height: 1.8;
+    font-style: italic;
+    max-width: 490px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .btn {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 22px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: transform .25s, background .25s;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    background: var(--white);
+    color: #171111;
+  }
+
+  .btn-primary:hover {
+    background: #e7dcd4;
+  }
+
+  .btn-secondary {
+    background: rgba(110, 100, 96, .44);
+    color: white;
+    border-color: rgba(255, 255, 255, .12);
+    backdrop-filter: blur(8px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(130, 115, 106, .6);
+  }
+
+  .footer-note {
+    margin-top: 42px;
+    color: rgba(255, 250, 244, .44);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .footer-note span {
+    color: var(--gold);
+  }
+
+  .bottom-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(transparent, var(--bg));
+    pointer-events: none;
+  }
+
+  /* Subtle film grain */
+  .grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .055;
+    z-index: 2;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+  }
+
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes breathe {
+    from { transform: scale(1); opacity: .65; }
+    to { transform: scale(1.12); opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      justify-content: flex-end;
+      min-height: 100svh;
+      padding: 100px 25px 72px;
+      background:
+        linear-gradient(
+          0deg,
+          #100b0c 8%,
+          rgba(16, 11, 12, .97) 30%,
+          rgba(16, 11, 12, .55) 66%,
+          rgba(16, 11, 12, .2) 100%
+        ),
+        url("wedding.jpg") 58% top / auto 65% no-repeat,
+        #100b0c;
+    }
+
+    .topbar {
+      padding: 23px 25px;
+    }
+
+    .brand {
+      font-size: 17px;
+      letter-spacing: 2px;
+    }
+
+    .top-label {
+      font-size: 8px;
+      letter-spacing: 1.5px;
+    }
+
+    .content {
+      padding-top: 110px;
+    }
+
+    .eyebrow {
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      margin-bottom: 22px;
+    }
+
+    .title {
+      font-size: clamp(48px, 13vw, 72px);
+      letter-spacing: -2.5px;
+    }
+
+    .title .accent {
+      letter-spacing: -1.5px;
+      margin-top: 8px;
+    }
+
+    .metadata {
+      gap: 8px;
+      font-size: 10px;
+      margin: 22px 0 17px;
+    }
+
+    .description {
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .quote {
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .actions {
+      margin-top: 24px;
+    }
+
+    .btn {
+      min-height: 46px;
+      padding: 0 15px;
+      font-size: 12px;
+    }
+
+    .footer-note {
+      font-size: 9px;
+      margin-top: 30px;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      scroll-behavior: auto !important;
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<main class="hero" id="home">
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <div class="brand">FOREVER.</div>
+    <div class="top-label">A story made beautiful by you</div>
+  </header>
+
+  <section class="content">
+    <div class="eyebrow">A little note from us</div>
+
+    <h1 class="title">
+      More than
+      <span class="accent">a beautiful day.</span>
+    </h1>
+
+    <div class="metadata">
+      <span class="year">THANK YOU</span>
+      <span class="divider">|</span>
+      <span>LOVE</span>
+      <span class="divider">|</span>
+      <span>MEMORIES</span>
+      <span class="divider">|</span>
+      <span>FOREVER</span>
+    </div>
+
+    <p class="description">
+      Untuk setiap doa yang diam-diam dilangitkan,
+      setiap tangan yang datang membantu,
+      setiap langkah yang rela menyempatkan diri,
+      dan setiap tawa yang membuat hari kami
+      terasa jauh lebih hidup —
+      <strong>terima kasih telah menjadi bagian
+      dari cerita paling indah dalam hidup kami.</strong>
+    </p>
+
+    <p class="quote">
+      “Hari bahagia ini mungkin milik kami,
+      tetapi keindahannya lahir dari begitu banyak
+      hati yang ikut menyayangi.”
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="#message"
+         onclick="document.getElementById('message').scrollIntoView({behavior:'smooth'}); return false;">
+        <span>♥</span> A little more love
+      </a>
+
+      <button class="btn btn-secondary" id="shareBtn"
+              type="button">
+        ↗ Share the love
+      </button>
+    </div>
+
+    <p class="footer-note" id="message">
+      With all our hearts, <span>thank you.</span>
+    </p>
+  </section>
+
+  <div class="bottom-gradient"></div>
+</main>
+
+<script>
+  const shareBtn = document.getElementById('shareBtn');
+
+  shareBtn.addEventListener('click', async () => {
+    const shareData = {
+      title: 'A little note from us 🤍',
+      text: 'Terima kasih sudah menjadi bagian dari cerita indah kami. 🤍',
+      url: window.location.href
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(
+          `${shareData.text}\n${shareData.url}`
+        );
+        shareBtn.textContent = '✓ Link copied!';
+      } else {
+        window.prompt('Copy link ini:', window.location.href);
+      }
+    } catch (error) {
+      if (error.name !== 'AbortError') {
+        window.prompt('Copy link ini:', window.location.href);
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
